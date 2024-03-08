@@ -1,0 +1,13 @@
+<app-loading *ngIf="isLoading">{{ isLoading }}</app-loading>
+<app-blog-tpml
+  [dataItems]="dataItems"
+  [listKeySortTpm]="listKeySort"
+  [sortDirectionTpm]="sortDirection"
+  [keyDefaultSortKey]="sortObject.key"
+  [keyDefaultSortDirection]="sortObject.direction"
+  (emitNewBlog)="addNewBlogDetail($event)"
+  (emitSortDirection)="sortItem($event, 'direction')"
+  (emitKeySort)="sortItem($event, 'key')"
+  (emitPagesize)="pageChange($event)"
+  (emitSearch)="searchItem($event)"
+></app-blog-tpml>

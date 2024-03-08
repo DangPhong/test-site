@@ -1,0 +1,56 @@
+<nav
+  class="row pagination-nav justify-content-center"
+  aria-label="Page navigation example"
+  *ngIf="!!_items"
+>
+  <div class="dropdown">
+    <button
+      class="btn btn-primary dropdown-toggle"
+      type="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      {{ _items.offset }}/ page
+    </button>
+    <ul class="dropdown-menu">
+      <li *ngFor="let pageSize of paginationSize">
+        <button
+          class="dropdown-item hover-pointer"
+          type="button"
+          (click)="pageSizeChange(pageSize)"
+        >
+          {{ pageSize }}
+        </button>
+      </li>
+    </ul>
+  </div>
+  <ul class="pagination">
+    <li class="page-item">
+      <a
+        class="page-link"
+        aria-label="Previous"
+        (click)="pageChange(_items.page - 1)"
+      >
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+
+    <li
+      class="page-item hover-pointer"
+      *ngFor="let item of [].constructor(_items?.total); index as i"
+      [ngClass]="i === _items.page - 1 ? 'active' : ''"
+    >
+      <a class="page-link" (click)="pageChange(i + 1)">{{ i + 1 }}</a>
+    </li>
+
+    <li class="page-item hover-pointer">
+      <a
+        class="page-link"
+        aria-label="Next"
+        (click)="pageChange(_items.page + 1)"
+      >
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
